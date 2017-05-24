@@ -2,16 +2,16 @@
   "name": "web-iot-workshop",
   "version": "1.0.0",
   "description": "",
-	"dependencies": {
-		"express": "^4.14.0",
-		"hapi": "^16.0.1",
-		"react": "^15.4.2",
-		"react-dom": "^15.4.2",
-		"ws": "^1.1.1"
-	},
-	"devDependencies": {
-		"webpack": "^2.2.1",
-		"webpack-dev-server": "^2.4.2",
+  "dependencies": {
+    "express": "^4.14.0",
+    "hapi": "^16.0.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "ws": "^1.1.1",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3"
+  },
+  "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.2.2",
     "babel-loader": "^6.2.10",
@@ -22,15 +22,18 @@
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "file-loader": "^0.11.1",
+    "html-loader": "^0.4.5",
     "open-browser-webpack-plugin": "0.0.5",
     "raw-loader": "^0.5.1",
-    "style-loader": "^0.16.1"
+    "style-loader": "^0.16.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   },
-	"scripts": {
-		"start": "webpack-dev-server",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "webpack"
-	},
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jbjw/web-iot-workshop.git"

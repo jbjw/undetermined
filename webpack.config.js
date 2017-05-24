@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
-const path = require('path');
+const path = require('path')
 
-const BUILD = path.resolve(__dirname, 'build');
-const SRC = path.resolve(__dirname, 'src');
+const BUILD = path.resolve(__dirname, 'build')
+const SRC = path.resolve(__dirname, 'src')
 
 module.exports = {
 	entry: path.resolve(SRC, 'main.js'),
@@ -17,9 +17,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.jsx?$/,
+				// test: /\.js*$/,
 				include: [SRC],
 				exclude: /node_modules/,
 				loader: 'babel-loader',
+				// use: ['babel-loader'],
 				options: {
 					presets: ['es2015', 'react'],
 				},
@@ -35,13 +37,19 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.css?$/,
+				test: /\.css$/,
 				include: [SRC],
 				exclude: /node_modules/,
 				use: [
 					'style-loader',
 					'css-loader',
-				]
+				],
+			},
+			{
+				test: /\.html$/,
+				include: [SRC],
+				exclude: /node_modules/,
+				use: ['html-loader',],
 			},
 		],
 	},
@@ -52,7 +60,6 @@ module.exports = {
 				to: 'index.html'
 			},
 		]),
-
 		new OpenBrowserPlugin({
 			url: 'http://localhost:3000/'
 		}),
@@ -73,7 +80,7 @@ module.exports = {
 	devServer: {
 		inline: true,
 		// hot: true,
-		contentBase: 'BUILD/',
+		contentBase: 'build/',
 		port: 80,
 	},
-};
+}
