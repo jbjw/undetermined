@@ -4,21 +4,21 @@ const url = require('url')
 
 const io = require('socket.io')(5000);
 
-io.on('connection', function(socket) {
-	console.log('a user connected')
+io.on('connection', function( socket ) {
+	console.log( `a user connected ${socket.id}` )
 
-	io.emit('user joined', {msg: 'blah blah joined'})
-	// socket.broadcast.emit('hi')
+	io.emit( 'user joined', { msg: 'blah blah joined', } )
+	// socket.broadcast.emit( 'hi' )
 
-	socket.on('chat message', function(x) {
-		console.log('chat msg recvd', x)
-		io.emit('chat message', x)
-	})
+	socket.on( 'message', function( msg ) {
+		console.log( `message from ${socket.id}: ${msg}` )
+		// io.emit( 'chat message', x )
+	} )
 
-	socket.on('disconnect', function(x) {
-		console.log('user disconnected', x)
-	})
-})
+	socket.on( 'disconnect', function( ) {
+		console.log( `${socket.id} disconnected` )
+	} )
+} )
 
 // path.resolve(APP_DIR, 'main.jsx'),
 // app.use('/static', express.static(path.join(__dirname, 'public')))
