@@ -1,16 +1,23 @@
-'use strict';
+'use strict'
 
 const url = require('url')
 
-const io = require('socket.io')(5000);
+const io = require('socket.io')(5000)
 
-io.on('connection', function( socket ) {
+io.on( 'connection', function( socket ) {
 	console.log( `a user connected ${socket.id}` )
 
 	io.emit( 'user joined', { msg: 'blah blah joined', } )
 	// socket.broadcast.emit( 'hi' )
 
+	socket.username = socket.id
+	socket.on( 'username', function( p ) {
+		io.emit( 'username', socket.username )
+		socket.username = p
+	} )
+
 	socket.on( 'message', function( msg ) {
+		io.emit( 'message', { user: socket.id, message: msg } )
 		console.log( `message from ${socket.id}: ${msg}` )
 		// io.emit( 'chat message', x )
 	} )
